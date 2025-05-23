@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="www.silver.dao.IF_writeDAO">
+	<insert id="insertone" parameterType="www.silver.vo.BoardVO"
+		useGeneratedKeys="true" keyProperty="postNum">
+		INSERT INTO board (title, content, price, saleStatus)
+		VALUES (#{title}, #{content}, #{price}, #{saleStatus})
+	</insert>
+
+	<insert id="board_attach" parameterType="map"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO board_attach (postNum, filename, createdAt)
+		VALUES (#{postNum}, #{filename}, default)
+	</insert>
+
+	<select id="selectall" resultType="www.silver.vo.BoardVO">
+		SELECT postNum, writer, title, content, createdAt, price, saleStatus
+		FROM board
+		ORDER BY postNum DESC
+	</select>
+
+	<select id="pagingList" parameterType="java.util.HashMap"
+		resultType="www.silver.vo.BoardVO">
+		SELECT *
+		FROM board
+		ORDER BY postNum DESC
+		LIMIT #{start}, #{limit}
+	</select>
+
+	<select id="boardCount" resultType="int">
+		SELECT COUNT(*) FROM board
+	</select>
+	
+	<select id = "selectOne" resultType = "www.silver.vo.BoardVO" parameterType = "Long">
+		select * from board where postNum = #{postNum}
+	</select>
+	
+	<select id="getAttach" resultType="String"
+		parameterType="Long">
+		select filename from board_attach where postNum = #{postNum}
+	</select>
+</mapper>

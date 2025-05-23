@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "www.silver.dao.IF_signUpDAO">
+<!-- sql쿼리문 만드는 공간 -->
+<insert id="insertone" parameterType="www.silver.vo.MemberVO">
+  insert into member 
+  values (#{userId}, #{userPassword}, #{userName}, #{zipCode}, #{address}, #{userEmail}, #{userPhoneNum})
+</insert>
+
+
+	
+	
+</mapper>
